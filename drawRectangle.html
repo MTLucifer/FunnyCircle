@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="600px" height="500px" style="border:1px solid #d3d3d3;"></canvas>
+<p>
+    <span id="area"></span>
+    <br>
+    <span id="peri"></span>
+</p>
+<script>
+    function Rectangle(x, y, width, height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+    function createRectangle(){
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        let width = prompt("Nhap chieu rong")
+        let height = prompt("Nhap chieu dai")
+        let color = getRandomColor();
+        let rectangle = new Rectangle(150,150,width,height);
+        ctx.beginPath();
+        ctx.rect(rectangle.x, rectangle.y, rectangle.width,rectangle.height);
+        ctx.fillStyle = color;
+        ctx.fill();
+        document.getElementById('area').innerHTML = "Dien tich: "+ (rectangle.x*rectangle.y);
+        document.getElementById('peri').innerHTML = "Chu vi: "+ ((rectangle.x+rectangle.y)/2);
+    }
+
+    function getRandomHex(){
+        return Math.floor(Math.random()*255);
+    }
+
+    function getRandomColor() {
+        let red = getRandomHex();
+        let green = getRandomHex();
+        let blue = getRandomHex();
+        return "rgb(" + red + "," + blue + "," + green + ")";
+    }
+
+    createRectangle();
+</script>
+</body>
+</html>
